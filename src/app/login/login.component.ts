@@ -10,30 +10,34 @@ import * as userActions from '../actions/user';
 @Component({
   selector: 'app-login',
   template: `
-    <div class="container-fluid text-center pb-5">
-      <div class="input-group">
-        <span class="input-group-addon" id="basic-addon1">Username</span>
-        <input type="text"
-          name="username"
-          class="form-control"
-          placeholder="Username"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          [formControl]="loginForm.controls['username']">
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon" id="basic-addon1">Password</span>
-        <input type="password"
-          name="password"
-          class="form-control"
-          placeholder="Password"
-          aria-label="Password"
-          aria-describedby="basic-addon1"
-          [formControl]="loginForm.controls['password']">
-      </div>
-      <div class="btn-group mr-2" role="group" aria-label="Sign">
-        <button type="button" class="btn btn-secondary" (click)="onSignIn()">Sign in</button>
-        <button type="button" class="btn btn-secondary" (click)="onSignUp()">Sign up</button>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h1 class="text-center login-title">Sign in</h1>
+          <div class="account-wall">
+            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                 alt="">
+            <form class="form-signin">
+              <input type="text"
+                     name="username"
+                     class="form-control"
+                     placeholder="Username"
+                     aria-label="Username"
+                     aria-describedby="basic-addon1"
+                     [formControl]="loginForm.controls['username']">
+              <input type="password"
+                     name="password"
+                     class="form-control"
+                     placeholder="Password"
+                     aria-label="Password"
+                     aria-describedby="basic-addon1"
+                     [formControl]="loginForm.controls['password']">
+              <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="onSignIn()">
+                Sign in</button>
+            </form>
+          </div>
+          <a href="#" class="text-center new-account" (click)="onSignUp()">Sign up </a>
+        </div>
       </div>
     </div>
   `,

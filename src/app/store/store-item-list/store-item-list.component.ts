@@ -7,7 +7,7 @@ import 'rxjs/add/operator/takeWhile';
 @Component({
   selector: 'app-store-item-list',
   template: `
-  <div class="container-fluid text-center pb-5">
+  <div class="text-center" style="width: 65%; display:inline-block; margin-left: 1.4em;">
     <div class="row">
       <app-store-item *ngFor="let product of getProducts() | async" [product]="product"></app-store-item>
     </div>

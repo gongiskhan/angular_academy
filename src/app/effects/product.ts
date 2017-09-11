@@ -22,4 +22,22 @@ export class ProductEffects {
       .map(res => new productActions.GetAllSuccessAction(res))
       .catch(err => of(new productActions.ServerFailAction(err)))
     );
+
+  @Effect()
+  add$: Observable<Action> = this.actions$.ofType(productActions.ActionTypes.ADD)
+    .debounceTime(300)
+    .map((action: productActions.AddAction) => action.payload)
+    .switchMap(payload => this.productService.add(payload)
+      .map(res => new productActions.AddSuccessAction(res))
+      .catch(err => of(new productActions.ServerFailAction(err)))
+    );
+
+  @Effect()
+  remove$: Observable<Action> = this.actions$.ofType(productActions.ActionTypes.REMOVE)
+    .debounceTime(300)
+    .map((action: productActions.RemoveAction) => action.payload)
+    .switchMap(payload => this.productService.remove(payload)
+      .map(res => new productActions.RemoveSuccessAction(payload))
+      .catch(err => of(new productActions.ServerFailAction(err)))
+    );
 }

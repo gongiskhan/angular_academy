@@ -24,7 +24,7 @@ const mocks = {
 
   USER: {
     id: 10,
-    username: 'usr',
+    username: 'user',
     password: 'abc',
     role: Roles.USER
   }
@@ -32,11 +32,11 @@ const mocks = {
 
 const getUserMock = (username) => {
   switch (username) {
-    case 'admin':
+    case mocks.ADMIN.username:
     return Observable.of(mocks.ADMIN);
-    case 'man':
+    case mocks.MANAGER.username:
     return Observable.of(mocks.MANAGER);
-    case 'user':
+    case mocks.USER.username:
     return Observable.of(mocks.USER);
   }
 };
@@ -50,7 +50,13 @@ export class UserService {
     return getUserMock(payload.username);
   }
 
+  // TODO: signUp
   signUp(payload) {
     return this.http.post(`/api/user/signup.json`, payload);
+  }
+
+  // TODO: signOut
+  signOut(payload) {
+    return this.http.post(`/api/user/signout.json`, payload);
   }
 }

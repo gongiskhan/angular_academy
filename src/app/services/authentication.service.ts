@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as fromRoot from '../reducers';
 import {Store} from '@ngrx/store';
+import { intersection } from 'lodash';
 
 @Injectable()
 export class AuthenticationService {
@@ -15,11 +16,11 @@ export class AuthenticationService {
     return !!loggedInUser;
   }
 
-  hasRole(requiredRole) {
+  hasAnyRole(requiredRoles) {
     let loggedInUser;
 
     this.store.select(fromRoot.getUser).subscribe(user => loggedInUser = user);
 
-    return loggedInUser.roles.includes(requiredRole);
+    return requiredRoles.includes(loggedInUser.role);
   }
 }
